@@ -1,0 +1,33 @@
+# Copyright (C) 2022 Indoc Research
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License along with this program. If not, see http://www.gnu.org/licenses/.
+
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      args:
+        PIP_USERNAME: "${PIP_USERNAME}"
+        PIP_PASSWORD: "${PIP_PASSWORD}"
+    ports:
+      - "5066:8000"
+    environment:
+      port: 8000
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - redis
+    command:
+      sh -c "uvicorn app:create_app --reload --host 0.0.0.0"
+
+  redis:
+    image: redis:6.0.8
+    ports:
+      - "7379:6379"
