@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "service_dataops_utility"
-version = "0.3.0"
+version = "0.1.0"
 description = ""
-authors = ["Indoc Research"]
+authors = [""]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -59,8 +59,3 @@ flake8 = "^4.0.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[[tool.poetry.source]]
-name = "pilot"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-default = true

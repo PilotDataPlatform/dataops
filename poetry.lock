@@ -13,11 +13,6 @@ typing-extensions = "*"
 [package.extras]
 hiredis = ["hiredis (>=1.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "anyio"
 version = "3.5.0"
@@ -36,11 +31,6 @@ doc = ["packaging", "sphinx-rtd-theme", "sphinx-autodoc-typehints (>=1.2.0)"]
 test = ["coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "pytest (>=6.0)", "pytest-mock (>=3.6.1)", "trustme", "contextlib2", "uvloop (<0.15)", "mock (>=4)", "uvloop (>=0.15)"]
 trio = ["trio (>=0.16)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "asgiref"
 version = "3.5.1"
@@ -55,11 +45,6 @@ typing-extensions = {version = "*", markers = "python_version < \"3.8\""}
 [package.extras]
 tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "async-asgi-testclient"
 version = "1.4.10"
@@ -72,11 +57,6 @@ python-versions = "*"
 multidict = ">=4.0,<7.0"
 requests = ">=2.21,<3.0"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "async-timeout"
 version = "4.0.2"
@@ -87,11 +67,6 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 typing-extensions = {version = ">=3.6.5", markers = "python_version < \"3.8\""}
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "asyncpg"
@@ -105,14 +80,9 @@ python-versions = ">=3.6.0"
 typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["Cython (>=0.29.24,<0.30.0)", "pytest (>=6.0)", "Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sphinx_rtd_theme (>=0.5.2,<0.6.0)", "pycodestyle (>=2.7.0,<2.8.0)", "flake8 (>=3.9.2,<3.10.0)", "uvloop (>=0.15.3)"]
-docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sphinx_rtd_theme (>=0.5.2,<0.6.0)"]
+dev = ["Cython (>=0.29.24,<0.30.0)", "pytest (>=6.0)", "Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sphinx-rtd-theme (>=0.5.2,<0.6.0)", "pycodestyle (>=2.7.0,<2.8.0)", "flake8 (>=3.9.2,<3.10.0)", "uvloop (>=0.15.3)"]
+docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sphinx-rtd-theme (>=0.5.2,<0.6.0)"]
 test = ["pycodestyle (>=2.7.0,<2.8.0)", "flake8 (>=3.9.2,<3.10.0)", "uvloop (>=0.15.3)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "atomicwrites"
@@ -121,11 +91,6 @@ description = "Atomic file writes."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "attrs"
@@ -141,11 +106,6 @@ docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "certifi"
 version = "2021.10.8"
@@ -154,11 +114,6 @@ category = "main"
 optional = false
 python-versions = "*"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "chardet"
 version = "3.0.4"
@@ -166,11 +121,6 @@ description = "Universal encoding detector for Python 2 and 3"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "charset-normalizer"
@@ -183,11 +133,6 @@ python-versions = ">=3.5.0"
 [package.extras]
 unicode_backport = ["unicodedata2"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "click"
 version = "7.1.2"
@@ -196,11 +141,6 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "colorama"
 version = "0.4.4"
@@ -208,11 +148,6 @@ description = "Cross-platform colored terminal text."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "coverage"
@@ -224,11 +159,6 @@ python-versions = ">=3.7"
 
 [package.extras]
 toml = ["tomli"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "deprecated"
@@ -244,11 +174,6 @@ wrapt = ">=1.10,<2"
 [package.extras]
 dev = ["tox", "bump2version (<1)", "sphinx (<2)", "importlib-metadata (<3)", "importlib-resources (<4)", "configparser (<5)", "sphinxcontrib-websupport (<2)", "zipp (<2)", "PyTest (<5)", "PyTest-Cov (<2.6)", "pytest", "pytest-cov"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "deprecation"
 version = "2.1.0"
@@ -259,11 +184,6 @@ python-versions = "*"
 
 [package.dependencies]
 packaging = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "docker"
@@ -282,11 +202,6 @@ websocket-client = ">=0.32.0"
 ssh = ["paramiko (>=2.4.2)"]
 tls = ["pyOpenSSL (>=17.5.0)", "cryptography (>=3.4.7)", "idna (>=2.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "faker"
 version = "12.3.3"
@@ -298,11 +213,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 python-dateutil = ">=2.4"
 typing-extensions = {version = ">=3.10.0.2", markers = "python_version < \"3.8\""}
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "fakeredis"
@@ -322,11 +232,6 @@ sortedcontainers = "*"
 aioredis = ["aioredis"]
 lua = ["lupa"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "fastapi"
 version = "0.62.0"
@@ -345,11 +250,6 @@ dev = ["python-jose[cryptography] (>=3.1.0,<4.0.0)", "passlib[bcrypt] (>=1.7.2,<
 doc = ["mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=6.1.4,<7.0.0)", "markdown-include (>=0.5.1,<0.6.0)", "mkdocs-markdownextradata-plugin (>=0.1.7,<0.2.0)", "typer (>=0.3.0,<0.4.0)", "typer-cli (>=0.0.9,<0.0.10)", "pyyaml (>=5.3.1,<6.0.0)"]
 test = ["pytest (==5.4.3)", "pytest-cov (==2.10.0)", "pytest-asyncio (>=0.14.0,<0.15.0)", "mypy (==0.782)", "flake8 (>=3.8.3,<4.0.0)", "black (==19.10b0)", "isort (>=5.0.6,<6.0.0)", "requests (>=2.24.0,<3.0.0)", "httpx (>=0.14.0,<0.15.0)", "email_validator (>=1.1.1,<2.0.0)", "sqlalchemy (>=1.3.18,<2.0.0)", "peewee (>=3.13.3,<4.0.0)", "databases[sqlite] (>=0.3.2,<0.4.0)", "orjson (>=3.2.1,<4.0.0)", "async_exit_stack (>=1.0.1,<2.0.0)", "async_generator (>=1.10,<2.0.0)", "python-multipart (>=0.0.5,<0.0.6)", "aiofiles (>=0.5.0,<0.6.0)", "flask (>=1.1.2,<2.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "fastapi-sqlalchemy"
 version = "0.2.1"
@@ -361,11 +261,6 @@ python-versions = ">=3.7"
 [package.dependencies]
 SQLAlchemy = ">=1.2"
 starlette = ">=0.12.9"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "fastapi-utils"
@@ -379,11 +274,6 @@ python-versions = ">=3.6,<4.0"
 fastapi = "*"
 pydantic = ">=1.0,<2.0"
 sqlalchemy = ">=1.3.12,<2.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "flake8"
@@ -399,11 +289,6 @@ mccabe = ">=0.6.0,<0.7.0"
 pycodestyle = ">=2.8.0,<2.9.0"
 pyflakes = ">=2.4.0,<2.5.0"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "googleapis-common-protos"
 version = "1.56.0"
@@ -418,11 +303,6 @@ protobuf = ">=3.12.0"
 [package.extras]
 grpc = ["grpcio (>=1.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "greenlet"
 version = "1.1.2"
@@ -433,11 +313,6 @@ python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
 [package.extras]
 docs = ["sphinx"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "grpcio"
@@ -453,11 +328,6 @@ six = ">=1.5.2"
 [package.extras]
 protobuf = ["grpcio-tools (>=1.46.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "gunicorn"
 version = "20.0.4"
@@ -472,11 +342,6 @@ gevent = ["gevent (>=0.13)"]
 setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "h11"
 version = "0.12.0"
@@ -484,11 +349,6 @@ description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "httpcore"
@@ -508,11 +368,6 @@ sniffio = ">=1.0.0,<2.0.0"
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (>=1.0.0,<2.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "httptools"
 version = "0.1.1"
@@ -523,11 +378,6 @@ python-versions = "*"
 
 [package.extras]
 test = ["Cython (==0.29.14)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "httpx"
@@ -550,11 +400,6 @@ cli = ["click (>=8.0.0,<9.0.0)", "rich (>=10.0.0,<11.0.0)", "pygments (>=2.0.0,<
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (>=1.0.0,<2.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "idna"
 version = "2.10"
@@ -562,11 +407,6 @@ description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "importlib-metadata"
@@ -584,11 +424,6 @@ zipp = ">=0.5"
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "iniconfig"
 version = "1.1.1"
@@ -596,11 +431,6 @@ description = "iniconfig: brain-dead simple config-ini parsing"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "mccabe"
@@ -610,11 +440,6 @@ category = "dev"
 optional = false
 python-versions = "*"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "multidict"
 version = "6.0.2"
@@ -622,11 +447,6 @@ description = "multidict implementation"
 category = "main"
 optional = false
 python-versions = ">=3.7"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "opentelemetry-api"
@@ -639,11 +459,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 Deprecated = ">=1.2.6"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-exporter-jaeger"
 version = "1.6.2"
@@ -655,11 +470,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 opentelemetry-exporter-jaeger-proto-grpc = "1.6.2"
 opentelemetry-exporter-jaeger-thrift = "1.6.2"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "opentelemetry-exporter-jaeger-proto-grpc"
@@ -675,11 +485,6 @@ grpcio = ">=1.0.0,<2.0.0"
 opentelemetry-api = ">=1.3,<2.0"
 opentelemetry-sdk = ">=1.3,<2.0"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-exporter-jaeger-thrift"
 version = "1.6.2"
@@ -693,11 +498,6 @@ opentelemetry-api = ">=1.3,<2.0"
 opentelemetry-sdk = ">=1.3,<2.0"
 thrift = ">=0.10.0"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-instrumentation"
 version = "0.26b1"
@@ -709,11 +509,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 opentelemetry-api = ">=1.4,<2.0"
 wrapt = ">=1.0.0,<2.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "opentelemetry-instrumentation-asgi"
@@ -734,11 +529,6 @@ opentelemetry-util-http = "0.26b1"
 instruments = ["asgiref (>=3.0,<4.0)"]
 test = ["opentelemetry-test-utils (==0.26b1)", "asgiref (>=3.0,<4.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-instrumentation-fastapi"
 version = "0.26b1"
@@ -758,11 +548,6 @@ opentelemetry-util-http = "0.26b1"
 instruments = ["fastapi (>=0.58,<1.0)"]
 test = ["opentelemetry-test-utils (==0.26b1)", "requests (>=2.23.0,<2.24.0)", "fastapi (>=0.58,<1.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-instrumentation-logging"
 version = "0.26b1"
@@ -777,11 +562,6 @@ opentelemetry-instrumentation = "0.26b1"
 
 [package.extras]
 test = ["opentelemetry-test-utils (==0.26b1)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "opentelemetry-instrumentation-requests"
@@ -801,11 +581,6 @@ opentelemetry-util-http = "0.26b1"
 instruments = ["requests (>=2.0,<3.0)"]
 test = ["opentelemetry-test-utils (==0.26b1)", "httpretty (>=1.0,<2.0)", "requests (>=2.0,<3.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-sdk"
 version = "1.7.1"
@@ -818,11 +593,6 @@ python-versions = ">=3.6"
 opentelemetry-api = "1.7.1"
 opentelemetry-semantic-conventions = "0.26b1"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-semantic-conventions"
 version = "0.26b1"
@@ -831,11 +601,6 @@ category = "main"
 optional = false
 python-versions = ">=3.6"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "opentelemetry-util-http"
 version = "0.26b1"
@@ -843,11 +608,6 @@ description = "Web util for OpenTelemetry"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "packaging"
@@ -860,11 +620,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pilot-platform-common"
 version = "0.0.25"
@@ -876,11 +631,6 @@ python-versions = ">=3.6"
 [package.dependencies]
 httpx = "0.22.0"
 python-dotenv = "0.19.1"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pluggy"
@@ -896,11 +646,6 @@ importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 [package.extras]
 dev = ["pre-commit", "tox"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "protobuf"
 version = "3.20.1"
@@ -908,11 +653,6 @@ description = "Protocol Buffers"
 category = "main"
 optional = false
 python-versions = ">=3.7"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "psycopg2-binary"
@@ -922,11 +662,6 @@ category = "main"
 optional = false
 python-versions = ">=3.6"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "py"
 version = "1.11.0"
@@ -935,11 +670,6 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pycodestyle"
 version = "2.8.0"
@@ -947,11 +677,6 @@ description = "Python style guide checker"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pydantic"
@@ -968,11 +693,6 @@ typing-extensions = ">=3.7.4.3"
 dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pyflakes"
 version = "2.4.0"
@@ -980,11 +700,6 @@ description = "passive checker of Python programs"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pyparsing"
@@ -996,11 +711,6 @@ python-versions = ">=3.6.8"
 
 [package.extras]
 diagrams = ["railroad-diagrams", "jinja2"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pytest"
@@ -1024,11 +734,6 @@ toml = "*"
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pytest-asyncio"
 version = "0.18.1"
@@ -1043,11 +748,6 @@ typing-extensions = {version = ">=3.7.2", markers = "python_version < \"3.8\""}
 
 [package.extras]
 testing = ["coverage (==6.2)", "hypothesis (>=5.7.1)", "flaky (>=3.5.0)", "mypy (==0.931)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pytest-cov"
@@ -1065,11 +765,6 @@ toml = "*"
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pytest-env"
 version = "0.6.2"
@@ -1080,11 +775,6 @@ python-versions = "*"
 
 [package.dependencies]
 pytest = ">=2.6.0"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "pytest-httpx"
@@ -1101,11 +791,6 @@ pytest = ">=6,<8"
 [package.extras]
 testing = ["pytest-asyncio (>=0.17.0,<0.18.0)", "pytest-cov (>=3.0.0,<4.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pytest-mock"
 version = "3.7.0"
@@ -1120,11 +805,6 @@ pytest = ">=5.0"
 [package.extras]
 dev = ["pre-commit", "tox", "pytest-asyncio"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "python-dateutil"
 version = "2.8.2"
@@ -1135,11 +815,6 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
 six = ">=1.5"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "python-dotenv"
@@ -1152,11 +827,6 @@ python-versions = ">=3.5"
 [package.extras]
 cli = ["click (>=5.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "python-json-logger"
 version = "0.1.11"
@@ -1164,11 +834,6 @@ description = "A python library adding a json log formatter"
 category = "main"
 optional = false
 python-versions = ">=2.7"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "python-multipart"
@@ -1181,11 +846,6 @@ python-versions = "*"
 [package.dependencies]
 six = ">=1.4.0"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "pywin32"
 version = "227"
@@ -1193,11 +853,6 @@ description = "Python for Window Extensions"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "redis"
@@ -1209,11 +864,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
 hiredis = ["hiredis (>=0.1.3)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "requests"
@@ -1233,11 +883,6 @@ urllib3 = ">=1.21.1,<1.25.0 || >1.25.0,<1.25.1 || >1.25.1,<1.26"
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "rfc3986"
 version = "1.5.0"
@@ -1252,11 +897,6 @@ idna = {version = "*", optional = true, markers = "extra == \"idna2008\""}
 [package.extras]
 idna2008 = ["idna"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "six"
 version = "1.16.0"
@@ -1264,11 +904,6 @@ description = "Python 2 and 3 compatibility utilities"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "sniffio"
@@ -1278,11 +913,6 @@ category = "main"
 optional = false
 python-versions = ">=3.5"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "sortedcontainers"
 version = "2.4.0"
@@ -1290,11 +920,6 @@ description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
 category = "dev"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "sqlalchemy"
@@ -1329,11 +954,6 @@ postgresql_psycopg2cffi = ["psycopg2cffi"]
 pymysql = ["pymysql (<1)", "pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "starlette"
 version = "0.13.6"
@@ -1344,11 +964,6 @@ python-versions = ">=3.6"
 
 [package.extras]
 full = ["aiofiles", "graphene", "itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests", "ujson"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "testcontainers"
@@ -1376,11 +991,6 @@ postgresql = ["sqlalchemy", "psycopg2-binary"]
 redis = ["redis"]
 selenium = ["selenium"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "thrift"
 version = "0.16.0"
@@ -1397,11 +1007,6 @@ all = ["tornado (>=4.0)", "twisted"]
 tornado = ["tornado (>=4.0)"]
 twisted = ["twisted"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "toml"
 version = "0.10.2"
@@ -1410,11 +1015,6 @@ category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "typing-extensions"
 version = "4.0.0"
@@ -1422,11 +1022,6 @@ description = "Backported and Experimental Type Hints for Python 3.6+"
 category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "urllib3"
@@ -1440,11 +1035,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 brotli = ["brotlipy (>=0.6.0)"]
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "uvicorn"
@@ -1463,11 +1053,6 @@ typing-extensions = {version = "*", markers = "python_version < \"3.8\""}
 [package.extras]
 standard = ["websockets (>=10.0)", "httptools (>=0.2.0,<0.4.0)", "watchgod (>=0.6)", "python-dotenv (>=0.13)", "PyYAML (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "colorama (>=0.4)"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "uvloop"
 version = "0.14.0"
@@ -1475,11 +1060,6 @@ description = "Fast implementation of asyncio event loop on top of libuv"
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "websocket-client"
@@ -1494,11 +1074,6 @@ docs = ["Sphinx (>=3.4)", "sphinx-rtd-theme (>=0.5)"]
 optional = ["python-socks", "wsaccel"]
 test = ["websockets"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [[package]]
 name = "wrapt"
 version = "1.14.1"
@@ -1506,11 +1081,6 @@ description = "Module for decorators, wrappers and monkey patching."
 category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
-
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
 
 [[package]]
 name = "zipp"
@@ -1524,15 +1094,10 @@ python-versions = ">=3.6"
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
-[package.source]
-type = "legacy"
-url = "https://git.indocresearch.org/api/v4/groups/pilot/-/packages/pypi/simple"
-reference = "pilot"
-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "2ff6f25eab6da4c56dc7758f42e0ccc5e63e234c67e6caf973658bd828884550"
+content-hash = "5137bb58bc3e2eb6fdf67f46f44c06a66bbc0c8cd9f395d8a765adb8d12203af"
 
 [metadata.files]
 aioredis = [
