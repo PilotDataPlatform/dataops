@@ -85,7 +85,7 @@ jobs:
         python3 -m pre_commit run isort --all-files
 
   tests:
-    needs: build
+    needs: create-virtualenv
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
