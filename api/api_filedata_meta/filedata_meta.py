@@ -14,9 +14,9 @@
 import uuid
 
 import httpx
+from common import LoggerFactory
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
-from logger import LoggerFactory
 
 from config import ConfigClass
 from models import filemeta_models as models

@@ -14,11 +14,11 @@
 from typing import List
 from typing import Tuple
 
+from common import LoggerFactory
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi.responses import JSONResponse
 from fastapi_utils.cbv import cbv
-from logger import LoggerFactory
 from pydantic import BaseModel
 
 from dependencies import Cache

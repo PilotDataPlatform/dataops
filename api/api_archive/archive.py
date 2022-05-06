@@ -12,10 +12,10 @@
 
 import json
 
+from common import LoggerFactory
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi_utils.cbv import cbv
-from logger import LoggerFactory
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql import select
 

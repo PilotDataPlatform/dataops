@@ -13,7 +13,7 @@
 import enum
 from functools import wraps
 
-from logger import LoggerFactory
+from common import LoggerFactory
 from requests import Response
 
 from models.base_models import APIResponse

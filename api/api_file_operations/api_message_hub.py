@@ -10,9 +10,9 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not,
 # see http://www.gnu.org/licenses/.
 
+from common import LoggerFactory
 from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
-from logger import LoggerFactory
 
 from models import file_ops_models as models
 from models.base_models import APIResponse
