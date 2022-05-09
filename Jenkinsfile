@@ -1,27 +1,27 @@
 pipeline {
     agent { label 'small' }
     environment {
-      imagename_dev = "registry-gitlab.indocresearch.org/pilot/service_dataops_utility"
-      imagename_staging = "registry-gitlab.indocresearch.org/pilot/service_dataops_utility"
+      imagename_dev = "ghcr.io/pilotdataplatform/dataops"
+      imagename_staging = "ghcr.io/pilotdataplatform/dataops"
       commit = sh(returnStdout: true, script: 'git describe --always').trim()
-      registryCredential = 'pilot-gitlab-registry'
+      registryCredential = 'pilot-ghcr'
       dockerImage = ''
     }
 
     stages {
     stage('Git clone for dev') {
-        when {branch "k8s-dev"}
+        when {branch "develop"}
         steps{
           script {
-            git branch: "k8s-dev",
-              url: 'https://git.indocresearch.org/pilot/service_dataops_utility.git',
+            git branch: "develop",
+              url: 'https://github.com/PilotDataPlatform/dataops.git',
               credentialsId: 'lzhao'
           }
         }
     }
 
     stage('DEV: Run unit tests') {
-        when { branch 'k8s-dev' }
+        when { branch 'develop' }
         steps {
             withCredentials([
                 usernamePassword(credentialsId: 'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD'),
@@ -41,12 +41,12 @@ pipeline {
     }
 
     stage('DEV Build and push image') {
-      when {branch "k8s-dev"}
+      when {branch "develop"}
       steps{
         script {
             withCredentials([usernamePassword(credentialsId:'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD')]) {
-                docker.withRegistry('https://registry-gitlab.indocresearch.org', registryCredential) {
-                    customImage = docker.build("registry-gitlab.indocresearch.org/pilot/service_dataops_utility:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} --add-host git.indocresearch.org:10.4.3.151 .")
+                docker.withRegistry('https://ghcr.io', registryCredential) {
+                    customImage = docker.build("$imagename_dev:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} .")
                     customImage.push()
                 }
             }
@@ -54,14 +54,14 @@ pipeline {
       }
     }
     stage('DEV Remove image') {
-      when {branch "k8s-dev"}
+      when {branch "develop"}
       steps{
         sh "docker rmi $imagename_dev:$commit"
       }
     }
 
     stage('DEV Deploy') {
-      when {branch "k8s-dev"}
+      when {branch "develop"}
       steps{
       build(job: "/VRE-IaC/UpdateAppVersion", parameters: [
         [$class: 'StringParameterValue', name: 'TF_TARGET_ENV', value: 'dev' ],
@@ -72,23 +72,23 @@ pipeline {
     }
 
     stage('Git clone staging') {
-        when {branch "k8s-staging"}
+        when {branch "main"}
         steps{
           script {
-          git branch: "k8s-staging",
-              url: 'https://git.indocresearch.org/pilot/service_dataops_utility.git',
+          git branch: "main",
+              url: 'https://github.com/PilotDataPlatform/dataops.git',
               credentialsId: 'lzhao'
             }
         }
     }
 
     stage('STAGING Building and push image') {
-      when {branch "k8s-staging"}
+      when {branch "main"}
       steps{
         script {
             withCredentials([usernamePassword(credentialsId:'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD')]) {
-                docker.withRegistry('https://registry-gitlab.indocresearch.org', registryCredential) {
-                    customImage = docker.build("registry-gitlab.indocresearch.org/pilot/service_dataops_utility:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} --add-host git.indocresearch.org:10.4.3.151 .")
+                docker.withRegistry('https://ghcr.io', registryCredential) {
+                    customImage = docker.build("$imagename_staging:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} .")
                     customImage.push()
                 }
             }
@@ -97,14 +97,14 @@ pipeline {
     }
 
     stage('STAGING Remove image') {
-      when {branch "k8s-staging"}
+      when {branch "main"}
       steps{
         sh "docker rmi $imagename_staging:$commit"
       }
     }
 
     stage('STAGING Deploy') {
-      when {branch "k8s-staging"}
+      when {branch "main"}
       steps{
       build(job: "/VRE-IaC/Staging-UpdateAppVersion", parameters: [
         [$class: 'StringParameterValue', name: 'TF_TARGET_ENV', value: 'staging' ],
