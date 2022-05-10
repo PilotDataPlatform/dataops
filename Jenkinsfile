@@ -70,7 +70,7 @@ pipeline {
     ])
       }
     }
-
+/**
     stage('Git clone staging') {
         when {branch "main"}
         steps{
@@ -113,6 +113,7 @@ pipeline {
     ])
       }
     }
+**/    
   }
   post {
       failure {
