@@ -92,7 +92,7 @@ async def test_v1_create_copy_file_operation_job_return_202(
         'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['result'][0]
@@ -118,7 +118,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_source_return_500(
         'payload': {'targets': [{'id': '112233'}], 'source': 'invalid', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
@@ -149,7 +149,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_destination_return
         'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': 'invalid'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
@@ -188,7 +188,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_target_resource_re
         'payload': {'targets': [{'id': 'invalid'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
@@ -227,7 +227,7 @@ async def test_v1_create_copy_file_operation_job_with_target_resource_is_archive
         'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
@@ -268,7 +268,7 @@ async def test_v1_create_copy_file_operation_job_with_target_resource_invalid_re
         'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     response = await test_client.post('/v1/files/actions/', json=payload)
@@ -310,7 +310,7 @@ async def test_v1_create_delete_file_operation_job_return_202(
         'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b'},
         'operator': 'admin',
         'operation': 'delete',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['result'][0]
@@ -343,7 +343,7 @@ async def test_v1_create_delete_file_operation_job_with_target_resource_not_foun
         'payload': {'targets': [{'id': '121212'}], 'source': '776dc0a8b'},
         'operator': 'admin',
         'operation': 'delete',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
@@ -368,7 +368,7 @@ async def test_v1_create_delete_file_operation_job_with_invalid_source_return_40
         'payload': {'targets': [{'id': '555555'}], 'source': '121212'},
         'operator': 'admin',
         'operation': 'delete',
-        'project_code': 'indoctestproject',
+        'project_geid': 'indoctestproject',
     }
     response = await test_client.post('/v1/files/actions/', json=payload)
     res = response.json()['error_msg']
