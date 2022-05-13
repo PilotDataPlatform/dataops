@@ -44,12 +44,10 @@ pipeline {
       when {branch "develop"}
       steps{
         script {
-            withCredentials([usernamePassword(credentialsId:'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD')]) {
                 docker.withRegistry('https://ghcr.io', registryCredential) {
-                    customImage = docker.build("$imagename_dev:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} .")
+                    customImage = docker.build("$imagename_dev:${env.commit}", ".")
                     customImage.push()
                 }
-            }
         }
       }
     }
@@ -86,12 +84,10 @@ pipeline {
       when {branch "main"}
       steps{
         script {
-            withCredentials([usernamePassword(credentialsId:'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD')]) {
                 docker.withRegistry('https://ghcr.io', registryCredential) {
-                    customImage = docker.build("$imagename_staging:${env.commit}", "--build-arg PIP_USERNAME=${PIP_USERNAME} --build-arg PIP_PASSWORD=${PIP_PASSWORD} .")
+                    customImage = docker.build("$imagename_staging:${env.commit}", ".")
                     customImage.push()
                 }
-            }
         }
       }
     }
