@@ -45,10 +45,15 @@ class FiledataMeta:
 
         zone_mapping = {'greenroom': 0}.get(data.namespace, 1)
 
+        # use minio_object_path to remove the file
+        # and replace the / with . to generate parent path
+        parent_path, _ = data.minio_object_path.rsplit('/', 1)
+        parent_path = parent_path.replace('/', '.')
+
         data = {
             'id': geid,
             'parent': data.parent_folder_geid,
-            'parent_path': data.minio_object_path.replace('/', '.'),
+            'parent_path': parent_path,
             'type': 'file',
             'zone': zone_mapping,
             'name': data.file_name,
