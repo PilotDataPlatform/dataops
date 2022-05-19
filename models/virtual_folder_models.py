@@ -13,7 +13,6 @@
 from pydantic import BaseModel
 from pydantic import Field
 
-from config import ConfigClass
 from models.base_models import APIResponse
 
 
@@ -115,29 +114,3 @@ class VirtualFileBulkDELETEResponse(APIResponse):
 
 class VirtualFileBulkDELETE(BaseModel):
     file_geids: list
-
-
-class VirtualFolderFileGETResponse(APIResponse):
-    result: list = Field(
-        [],
-        example=[
-            {
-                'archived': False,
-                'file_size': 1409578,
-                'full_path': '/data/gregtest/raw/OIP.WH4UEecUNFLkLRAy3cbgQQHaEK.jpg',
-                'dcm_id': 'undefined',
-                'global_entity_id': 'file_data-2bed2e20-64c9-11eb-b013-be498ca98c54-1612210075',
-                'guid': '189cc59e-5c50-4857-a7a6-fca7848ad51c',
-                'id': 501,
-                'labels': ['File', ConfigClass.CORE_ZONE_LABEL, 'Processed'],
-                'name': 'OIP.WH4UEecUNFLkLRAy3cbgQQHaEK.jpg',
-                'operator': 'admin',
-                'path': '/data/gregtest/raw',
-                'process_pipeline': 'data_transfer',
-                'tags': [],
-                'time_created': '2021-02-01T20:07:55',
-                'time_lastmodified': '2021-02-01T20:07:55',
-                'uploader': 'admin',
-            }
-        ],
-    )

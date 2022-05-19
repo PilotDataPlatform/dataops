@@ -64,7 +64,6 @@ class FiledataMeta:
             'location_uri': 'minio://%s/%s/%s' % (ConfigClass.MINIO_SERVICE, data.bucket, data.minio_object_path),
             'version': data.version_id,
             'tags': data.labels,
-            'dcm_id': data.dcm_id,
         }
 
         async with httpx.AsyncClient() as client:
