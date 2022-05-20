@@ -35,5 +35,6 @@ This service contains dataops that should not have access to greenroom. It's bui
 
 *Plain old docker*
 
+
 `docker build . -t service_data_ops`
 `docker run service_data_ops`
