@@ -13,7 +13,6 @@
 from pydantic import BaseModel
 from pydantic import Field
 
-from config import ConfigClass
 from models.base_models import APIResponse
 
 # FiledataMeta
@@ -26,7 +25,6 @@ class FiledataMetaPOST(BaseModel):
     namespace: str
     labels: list
     project_code: str
-    dcm_id: str = ''
     parent_folder_geid: str = ''
     # Minio attribute
     bucket: str = ''
@@ -38,21 +36,30 @@ class FiledataMetaPOSTResponse(APIResponse):
     result: dict = Field(
         {},
         example={
-            'archived': False,
-            'file_size': 1024,
-            'full_path': '/data/storage/dcm/raw/BCD-1234_file_2.aacn',
-            'dcm_id': 'BCD-1234_2',
-            'guid': '5321880a-1a41-4bc8-a5d5-9767323205792',
-            'id': 478,
-            'labels': [ConfigClass.CORE_ZONE_LABEL, 'File', 'Processed'],
-            'name': 'BCD-1234_file_2.aacn',
-            'namespace': 'core',
-            'path': '/data/storage/dcm/raw',
-            'process_pipeline': 'greg_testing',
-            'time_created': '2021-01-06T18:02:55',
-            'time_lastmodified': '2021-01-06T18:02:55',
-            'type': 'processed',
-            'uploader': 'admin',
-            'operator': 'admin',
+            'id': '85465212-168a-4f0c-a7aa-f3a19795d2ff',
+            'parent': '28c608ac-1693-4318-a1c4-412caf2cd74a',
+            'parent_path': 'path.to.file',
+            'type': 'file',
+            'zone': 0,
+            'name': 'filename',
+            'size': 0,
+            'owner': 'username',
+            'container_code': 'project_code',
+            'container_type': 'project',
+            'created_time': '2022-04-13 13:30:10.890347',
+            'last_updated_time': '2022-04-13 13:30:10.890347',
+            'storage': {
+                'id': 'ba623005-8183-419a-972a-e4ce0d539349',
+                'location_uri': 'https://example.com/item',
+                'version': '1.0',
+            },
+            'extended': {
+                'id': 'dc763d28-7e74-4db3-a702-fa719aa702c6',
+                'extra': {
+                    'tags': ['tag1', 'tag2'],
+                    'system_tags': ['tag1', 'tag2'],
+                    'attributes': {'101778d7-a628-41ea-823b-e4b377f3476c': {'key1': 'value1', 'key2': 'value2'}},
+                },
+            },
         },
     )
