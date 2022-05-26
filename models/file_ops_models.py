@@ -25,7 +25,7 @@ from models.base_models import APIResponse
 class FileOperationTarget(BaseModel):
     """Validate structure of single target in file operation payload."""
 
-    id: str
+    geid: str
 
     class Config:
         extra = Extra.ignore

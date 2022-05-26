@@ -89,7 +89,7 @@ async def test_v1_create_copy_file_operation_job_return_202(
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -115,7 +115,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_source_return_500(
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': 'invalid', 'destination': '886dc0a8b'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': 'invalid', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -146,7 +146,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_destination_return
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': 'invalid'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': '776dc0a8b', 'destination': 'invalid'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -185,7 +185,7 @@ async def test_v1_create_copy_file_operation_job_with_invalid_target_resource_re
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': 'invalid'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
+        'payload': {'targets': [{'geid': 'invalid'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -224,7 +224,7 @@ async def test_v1_create_copy_file_operation_job_with_target_resource_is_archive
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -265,7 +265,7 @@ async def test_v1_create_copy_file_operation_job_with_target_resource_invalid_re
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': '776dc0a8b', 'destination': '886dc0a8b'},
         'operator': 'admin',
         'operation': 'copy',
         'project_geid': 'indoctestproject',
@@ -307,7 +307,7 @@ async def test_v1_create_delete_file_operation_job_return_202(
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '112233'}], 'source': '776dc0a8b'},
+        'payload': {'targets': [{'geid': '112233'}], 'source': '776dc0a8b'},
         'operator': 'admin',
         'operation': 'delete',
         'project_geid': 'indoctestproject',
@@ -340,7 +340,7 @@ async def test_v1_create_delete_file_operation_job_with_target_resource_not_foun
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '121212'}], 'source': '776dc0a8b'},
+        'payload': {'targets': [{'geid': '121212'}], 'source': '776dc0a8b'},
         'operator': 'admin',
         'operation': 'delete',
         'project_geid': 'indoctestproject',
@@ -365,7 +365,7 @@ async def test_v1_create_delete_file_operation_job_with_invalid_source_return_40
     payload = {
         'session_id': 'admin-e17e19b3-b6a5-4198-9458-1c1a67a98a33',
         'task_id': 'default_task_id',
-        'payload': {'targets': [{'id': '555555'}], 'source': '121212'},
+        'payload': {'targets': [{'geid': '555555'}], 'source': '121212'},
         'operator': 'admin',
         'operation': 'delete',
         'project_geid': 'indoctestproject',

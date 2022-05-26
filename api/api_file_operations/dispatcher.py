@@ -83,11 +83,11 @@ class BaseDispatcher:
     async def validate_targets(self, targets: List[FileOperationTarget]) -> ItemList:
         fetched = []
         for target in targets:
-            source = await get_resource_by_id(target.id)
+            source = await get_resource_by_id(target.geid)
             if not source:
-                raise ValueError(f'Not found resource: {target.id}')
+                raise ValueError(f'Not found resource: {target.geid}')
             if source['archived'] is True:
-                raise ValueError(f'Archived files should not perform further file actions: {target.id}')
+                raise ValueError(f'Archived files should not perform further file actions: {target.geid}')
             resource_type = get_resource_type([source['type']])
             if resource_type not in [ResourceType.FILE, ResourceType.FOLDER]:
                 raise ValueError(f'Invalid target type (only support File or Folder): {source}')
