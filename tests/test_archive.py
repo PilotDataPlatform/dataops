@@ -43,11 +43,9 @@ async def test_client_db(engine):
 async def test_v1_create_preview_return_200(test_client_db, create_db_archive):
     payload = {
         'file_id': file_id,
-        'archive_preview': {
-            'QAZ-1234_ABC-1234_Dicomzip_Prüfung_edited153928o': {
-                'ABC-1234_Dicomzip_Prüfung200140o': {'101_DTI': {'is_dir': True}}
-            }
-        },
+        'archive_preview': {"test.py": {"filename": "test.py", "size": 1111,
+                "is_dir": False}, "dir2": {"is_dir": True, "test2.py":
+                {"filename": "test22.py", "size": 999, "is_dir": False}}},
     }
 
     result = await test_client_db.post('/v1/archive', json=payload)
@@ -59,11 +57,8 @@ async def test_v1_create_preview_return_200(test_client_db, create_db_archive):
 async def test_v1_create_preview_duplicate_entry_return_409(test_client_db, create_db_archive):
     payload = {
         'file_id': file_id_db,
-        'archive_preview': {
-            'QAZ-1234_ABC-1234_Dicomzip_Prüfung_edited153928o': {
-                'ABC-1234_Dicomzip_Prüfung200140o': {'101_DTI': {'is_dir': True}}
-            }
-        },
+        'archive_preview': {"test.py": {"filename": "test.py", "size": 1111,
+                "is_dir": False}},
     }
     result = await test_client_db.post('/v1/archive', json=payload)
     res = result.json()
@@ -79,8 +74,8 @@ async def test_v1_get_preview_return_200(test_client_db, create_db_archive):
     res = result.json()
     assert result.status_code == 200
     assert res['result'] == {
-        'remove_column.py': {'filename': 'remove_column.py', 'size': 2550, 'is_dir': False},
-        'dir2': {'is_dir': True, 'script.py': {'filename': 'script.py', 'size': 1219, 'is_dir': False}},
+        'script.py': {'filename': 'script.py', 'size': 2550, 'is_dir': False},
+        'dir2': {'is_dir': True, 'script2.py': {'filename': 'script2.py', 'size': 1219, 'is_dir': False}},
     }
 
 
