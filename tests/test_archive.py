@@ -43,9 +43,10 @@ async def test_client_db(engine):
 async def test_v1_create_preview_return_200(test_client_db, create_db_archive):
     payload = {
         'file_id': file_id,
-        'archive_preview': {"test.py": {"filename": "test.py", "size": 1111,
-                "is_dir": False}, "dir2": {"is_dir": True, "test2.py":
-                {"filename": "test22.py", "size": 999, "is_dir": False}}},
+        'archive_preview': {
+            'test.py': {'filename': 'test.py', 'size': 1111, 'is_dir': False},
+            'dir2': {'is_dir': True, 'test2.py': {'filename': 'test22.py', 'size': 999, 'is_dir': False}},
+        },
     }
 
     result = await test_client_db.post('/v1/archive', json=payload)
@@ -57,8 +58,7 @@ async def test_v1_create_preview_return_200(test_client_db, create_db_archive):
 async def test_v1_create_preview_duplicate_entry_return_409(test_client_db, create_db_archive):
     payload = {
         'file_id': file_id_db,
-        'archive_preview': {"test.py": {"filename": "test.py", "size": 1111,
-                "is_dir": False}},
+        'archive_preview': {'test.py': {'filename': 'test.py', 'size': 1111, 'is_dir': False}},
     }
     result = await test_client_db.post('/v1/archive', json=payload)
     res = result.json()
