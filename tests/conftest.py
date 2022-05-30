@@ -79,9 +79,9 @@ async def create_db_archive(engine):
         session.add(
             ArchivePreviewModel(
                 file_id='689665f9-eb57-4029-9fb4-526ce743d1c9',
-                archive_preview='{"remove_column.py": {"filename": "remove_column.py", "size": 2550, '
-                '"is_dir": false}, "dir2": {"is_dir": true, "script.py": '
-                '{"filename": "script.py", "size": 1219, "is_dir": false}}}',
+                archive_preview='{"script.py": {"filename": "script.py", "size": 2550, '
+                '"is_dir": false}, "dir2": {"is_dir": true, "script2.py": '
+                '{"filename": "script2.py", "size": 1219, "is_dir": false}}}',
             )
         )
         await session.commit()
