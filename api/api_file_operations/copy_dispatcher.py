@@ -49,7 +49,7 @@ class CopyDispatcher(BaseDispatcher):
 
         job_geid = fetch_geid()
         session_job = SessionJob(
-            data.session_id, data.project_geid, 'data_transfer', data.operator, task_id=data.task_id
+            data.session_id, data.project_code, 'data_transfer', data.operator, task_id=data.task_id
         )
 
         try:
@@ -67,7 +67,7 @@ class CopyDispatcher(BaseDispatcher):
                     'job_id': job_geid,
                     'source_geid': data.payload.source,
                     'include_geids': list(targets.ids),
-                    'project': data.project_geid,
+                    'project': data.project_code,
                     'request_id': str(data.payload.request_id or ''),
                     'generic': True,
                     'operator': data.operator,

@@ -46,7 +46,7 @@ class FileOperationsPOST(BaseModel):
     payload: FileOperationPayload
     operator: str
     operation: str = 'copy/delete'
-    project_geid: str
+    project_code: str
 
 
 class FileOperationsPOSTResponse(APIResponse):
@@ -59,8 +59,8 @@ class FileOperationsPOSTResponse(APIResponse):
                 'source': 'file1.png',
                 'action': 'data_transfer',
                 'status': 'PENDING',
-                'project_geid': 'gregtest',
-                'operator': 'zhengyang',
+                'project_code': 'testproject',
+                'operator': 'admin',
                 'progress': 0,
                 'payload': {},
                 'update_timestamp': '1616439731',
@@ -71,8 +71,8 @@ class FileOperationsPOSTResponse(APIResponse):
                 'source': 'a/b/file1.png',
                 'action': 'data_upload',
                 'status': 'SUCCEED',
-                'project_geid': 'gregtest',
-                'operator': 'zhengyang',
+                'project_code': 'testproject',
+                'operator': 'admin',
                 'progress': 0,
                 'payload': {},
                 'update_timestamp': '1616439732',
