@@ -45,7 +45,7 @@ class DeleteDispatcher(BaseDispatcher):
             return EAPIResponseCode.bad_request, str(e)
 
         job_geid = fetch_geid()
-        session_job = SessionJob(data.session_id, data.project_geid, 'data_delete', data.operator, task_id=data.task_id)
+        session_job = SessionJob(data.session_id, data.project_code, 'data_delete', data.operator, task_id=data.task_id)
 
         try:
             await session_job.set_job_id(job_geid)
@@ -66,7 +66,7 @@ class DeleteDispatcher(BaseDispatcher):
                     'job_id': job_geid,
                     'source_geid': data.payload.source,
                     'include_geids': list(targets.ids),
-                    'project': data.project_geid,
+                    'project': data.project_code,
                     'generic': True,
                     'operator': data.operator,
                     'auth_token': auth_token,
