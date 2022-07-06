@@ -10,9 +10,9 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.
 # If not, see http://www.gnu.org/licenses/.
 
+from sqlalchemy import VARCHAR
+from sqlalchemy import BigInteger
 from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -22,12 +22,11 @@ Base = declarative_base()
 
 
 class ArchivePreviewModel(Base):
-
     __tablename__ = 'archive_preview'
     __table_args__ = {'schema': ConfigClass.RDS_SCHEMA_DEFAULT}
-    id = Column(Integer, unique=True, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
     file_id = Column(UUID(as_uuid=True))
-    archive_preview = Column(String())
+    archive_preview = Column(VARCHAR())
 
     def __init__(self, file_id, archive_preview):
         self.file_id = file_id

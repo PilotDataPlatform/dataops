@@ -55,9 +55,7 @@ class FileOperations:
             'copy': CopyDispatcher,
             'delete': DeleteDispatcher,
         }.get(data.operation, None)
-
         api_response = APIResponse()
-
         if not job_dispatcher:
             api_response.code = EAPIResponseCode.bad_request
             api_response.error_msg = 'Invalid operation'
