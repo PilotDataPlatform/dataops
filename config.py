@@ -110,4 +110,3 @@ def get_settings():
 
 
 ConfigClass = get_settings()
-

@@ -72,4 +72,3 @@ if context.is_offline_mode():
     exit(1)
 
 run_migrations_online()
-
