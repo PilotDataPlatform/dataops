@@ -22,8 +22,8 @@ from alembic import context
 from sqlalchemy import create_engine
 from sqlalchemy.pool import NullPool
 
-from models.api_archive_sql import Base
 from config import get_settings
+from models.api_archive_sql import Base
 
 logger = logging.getLogger('alembic')
 

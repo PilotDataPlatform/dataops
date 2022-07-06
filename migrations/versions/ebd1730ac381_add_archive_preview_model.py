@@ -1,13 +1,13 @@
-"""add_archive_preview_model
+"""add_archive_preview_model.
 
 Revision ID: ebd1730ac381
-Revises: 
+Revises:
 Create Date: 2022-07-05 13:38:12.607701
-
 """
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects import postgresql
+
 #
 # from models.api_archive_sql import BIGSERIAL
 

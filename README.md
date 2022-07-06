@@ -6,7 +6,7 @@
 
 Service Description
 
-Manages file/folder operations (copy, delete). This is accomplished by dispatching operation requests received by 
+Manages file/folder operations (copy, delete). This is accomplished by dispatching operation requests received by
 the portal to the Queue service and managing the status of each respective copy/delete process in Redis. In addition,
 the generation and retrieval of previews of zipped files are managed in this service.
 
@@ -81,12 +81,12 @@ docker-compose up
 ```
 To run an Alembic schema revision:
 ```
-docker compose run --rm alembic revision --autogenerate -m "Migration message"
+docker compose run alembic --rm alembic revision --autogenerate -m "Migration message"
 ```
 
 ## Resources
 
-* [API Document](https://pilotdataplatform.github.io/api-docs/) 
+* [API Document](https://pilotdataplatform.github.io/api-docs/)
 * [Helm Chart](https://github.com/PilotDataPlatform/helm-charts/)
 
 ## Contribution
