@@ -15,19 +15,18 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from config import Settings
-from config import get_settings
+from config import ConfigClass
 
 
 class CreateEngine:
     def __init__(self) -> None:
         self.instance = None
 
-    async def __call__(self, settings: Settings = Depends(get_settings)) -> AsyncEngine:
+    async def __call__(self) -> AsyncEngine:
         """Return an instance of AsyncEngine class."""
 
         if not self.instance:
-            self.instance = create_async_engine(settings.RDS_DB_URI, echo=settings.RDS_ECHO_SQL_QUERIES)
+            self.instance = create_async_engine(ConfigClass.RDS_DB_URI, echo=ConfigClass.RDS_ECHO_SQL_QUERIES)
         return self.instance
 
 

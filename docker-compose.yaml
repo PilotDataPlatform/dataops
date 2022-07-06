@@ -10,10 +10,8 @@ version: "3"
 services:
   app:
     build:
+      target: dataops-image
       context: .
-      args:
-        PIP_USERNAME: "${PIP_USERNAME}"
-        PIP_PASSWORD: "${PIP_PASSWORD}"
     ports:
       - "5066:8000"
     environment:
@@ -31,3 +29,10 @@ services:
     image: redis:6.0.8
     ports:
       - "7379:6379"
+
+  alembic:
+    build:
+      target: alembic-image
+      context: .
+    env_file:
+      - .env

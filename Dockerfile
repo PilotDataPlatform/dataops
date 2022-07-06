@@ -6,7 +6,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see http://www.gnu.org/licenses/.
 
-FROM python:3.7-buster AS production-environment
+FROM python:3.9-buster AS production-environment
 
 ARG PIP_USERNAME
 ARG PIP_PASSWORD
@@ -25,7 +25,7 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev --no-root --no-interaction
 
-FROM production-environment AS project-image
+FROM production-environment AS dataops-image
 
 COPY . .
 RUN chmod +x gunicorn_starter.sh
@@ -37,10 +37,9 @@ RUN poetry install --no-root --no-interaction
 
 FROM development-environment AS alembic-image
 
-ENV ALEMBIC_CONFIG=/Users/anthmam/Desktop/projects/indoc/services/dataops/migrations/alembic.ini
+ENV ALEMBIC_CONFIG=migrations/alembic.ini
 
 COPY . .
-
 ENTRYPOINT ["python3", "-m", "alembic"]
 
 CMD ["upgrade", "head"]
