@@ -100,7 +100,7 @@ jobs:
     - name: Run tests
       run: |
         source .venv/bin/activate
-        PYTHONPATH=. pytest -c tests/pytest.ini -vvv --cov=app --cov-report term-missing --cov-report=xml --disable-warnings
+        PYTHONPATH=. pytest -c tests/pytest.ini -vvv --cov=api --cov-report term-missing --cov-report=xml --disable-warnings
     - name: Upload coverage
       uses: codecov/codecov-action@v1
       with:
