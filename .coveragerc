@@ -1,2 +1,2 @@
 [run]
-concurrency = greenlet, thread
+concurrency = greenlet,thread
