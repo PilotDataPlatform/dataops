@@ -49,11 +49,9 @@ To get a local copy up and running follow these simple example steps.
 
  3. create the `.env` file from `.env.schema`
 
-
-
-
- 4. perform Alembic schema upgrade:
+ 4. perform Alembic schema upgrade (ensure database schema: `RDS_SCHEMA_DEFAULT`, and database instance is set in the `.env`):
  ```
+ export ALEMBIC_CONFIG=migrations/alembic.ini
  poetry run alembic upgrade head
  ```
  5. perform Alembic schema revision if you change model schema (optional):
