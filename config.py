@@ -73,7 +73,7 @@ class Settings(BaseSettings):
     RDS_PASSWORD: str
     RDS_NAME: str
     RDS_SCHEMA: str
-    RDS_TABLE_NAME: str
+    RDS_TABLE_NAME: str = 'archive_preview'
     RDS_ECHO_SQL_QUERIES: bool = False
 
     MINIO_HOST: str
