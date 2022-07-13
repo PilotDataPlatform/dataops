@@ -14,21 +14,21 @@ import pytest
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_lock(test_client_resource, fake, operation):
+async def test_lock(test_client, fake, operation):
     payload = {
         'resource_key': fake.pystr(),
         'operation': operation,
     }
 
-    response = await test_client_resource.post('/v2/resource/lock/', json=payload)
+    response = await test_client.post('/v2/resource/lock/', json=payload)
     assert response.status_code == 200
 
-    response = await test_client_resource.delete('/v2/resource/lock/', json=payload)
+    response = await test_client.delete('/v2/resource/lock/', json=payload)
     assert response.status_code == 200
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_bulk_lock_performs_lock_for_multiple_keys(test_client_resource, fake, operation):
+async def test_bulk_lock_performs_lock_for_multiple_keys(test_client, fake, operation):
     key1 = f'a_{fake.pystr()}'
     key2 = f'b_{fake.pystr()}'
     payload = {
@@ -36,7 +36,7 @@ async def test_bulk_lock_performs_lock_for_multiple_keys(test_client_resource, f
         'operation': operation,
     }
 
-    response = await test_client_resource.post('/v2/resource/lock/bulk', json=payload)
+    response = await test_client.post('/v2/resource/lock/bulk', json=payload)
     assert response.status_code == 200
 
     expected_result = [
@@ -49,19 +49,19 @@ async def test_bulk_lock_performs_lock_for_multiple_keys(test_client_resource, f
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_bulk_lock_stops_locking_when_lock_attempt_fails(test_client_resource, fake, operation):
+async def test_bulk_lock_stops_locking_when_lock_attempt_fails(test_client, fake, operation):
     key1 = f'a_{fake.pystr()}'
     key2 = f'b_{fake.pystr()}'
     key3 = f'c_{fake.pystr()}'
 
-    await test_client_resource.post('/v2/resource/lock/', json={'resource_key': key2, 'operation': 'write'})
+    await test_client.post('/v2/resource/lock/', json={'resource_key': key2, 'operation': 'write'})
 
     payload = {
         'resource_keys': [key1, key2, key3],
         'operation': operation,
     }
 
-    response = await test_client_resource.post('/v2/resource/lock/bulk', json=payload)
+    response = await test_client.post('/v2/resource/lock/bulk', json=payload)
     assert response.status_code == 409
 
     expected_result = [
@@ -75,19 +75,19 @@ async def test_bulk_lock_stops_locking_when_lock_attempt_fails(test_client_resou
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_bulk_unlock_performs_unlock_for_multiple_keys(test_client_resource, fake, operation):
+async def test_bulk_unlock_performs_unlock_for_multiple_keys(test_client, fake, operation):
     key1 = f'a_{fake.pystr()}'
     key2 = f'b_{fake.pystr()}'
 
     for key in [key1, key2]:
-        await test_client_resource.post('/v2/resource/lock/', json={'resource_key': key, 'operation': 'write'})
+        await test_client.post('/v2/resource/lock/', json={'resource_key': key, 'operation': 'write'})
 
     payload = {
         'resource_keys': [key1, key2],
         'operation': operation,
     }
 
-    response = await test_client_resource.delete('/v2/resource/lock/bulk', json=payload)
+    response = await test_client.delete('/v2/resource/lock/bulk', json=payload)
     assert response.status_code == 200
 
     expected_result = [
@@ -100,18 +100,18 @@ async def test_bulk_unlock_performs_unlock_for_multiple_keys(test_client_resourc
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_bulk_unlock_continues_unlocking_when_unlock_attempt_fails(test_client_resource, fake, operation):
+async def test_bulk_unlock_continues_unlocking_when_unlock_attempt_fails(test_client, fake, operation):
     key1 = f'a_{fake.pystr()}'
     key2 = f'b_{fake.pystr()}'
 
-    await test_client_resource.post('/v2/resource/lock/', json={'resource_key': key2, 'operation': 'write'})
+    await test_client.post('/v2/resource/lock/', json={'resource_key': key2, 'operation': 'write'})
 
     payload = {
         'resource_keys': [key1, key2],
         'operation': operation,
     }
 
-    response = await test_client_resource.delete('/v2/resource/lock/bulk', json=payload)
+    response = await test_client.delete('/v2/resource/lock/bulk', json=payload)
     assert response.status_code == 400
 
     expected_result = [
@@ -124,17 +124,17 @@ async def test_bulk_unlock_continues_unlocking_when_unlock_attempt_fails(test_cl
 
 
 @pytest.mark.parametrize('operation', ['read', 'write'])
-async def test_lock_returns_404_for_not_existing_lock(test_client_resource, fake, operation):
+async def test_lock_returns_404_for_not_existing_lock(test_client, fake, operation):
     payload = {
         'resource_key': fake.pystr(),
         'operation': operation,
     }
 
-    response = await test_client_resource.delete('/v2/resource/lock/', json=payload)
+    response = await test_client.delete('/v2/resource/lock/', json=payload)
     assert response.status_code == 400
 
 
-async def test_read_lock_not_exist_after_multiple_lock_unlock_operations(test_client_resource, fake):
+async def test_read_lock_not_exist_after_multiple_lock_unlock_operations(test_client, fake):
     payload = {
         'resource_key': fake.pystr(),
         'operation': 'read',
@@ -142,26 +142,26 @@ async def test_read_lock_not_exist_after_multiple_lock_unlock_operations(test_cl
 
     num = 10
     for _ in range(num):
-        response = await test_client_resource.post('/v2/resource/lock/', json=payload)
+        response = await test_client.post('/v2/resource/lock/', json=payload)
         assert response.status_code == 200
 
     for _ in range(num):
-        response = await test_client_resource.delete('/v2/resource/lock/', json=payload)
+        response = await test_client.delete('/v2/resource/lock/', json=payload)
         assert response.status_code == 200
 
-    response = await test_client_resource.get('/v2/resource/lock/', params=payload)
+    response = await test_client.get('/v2/resource/lock/', query_string=payload)
     status = response.json()['result']['status']
     assert status is None
 
 
-async def test_second_write_lock_is_not_allowed_and_returns_409(test_client_resource, fake):
+async def test_second_write_lock_is_not_allowed_and_returns_409(test_client, fake):
     payload = {
         'resource_key': fake.pystr(),
         'operation': 'write',
     }
 
-    response = await test_client_resource.post('/v2/resource/lock/', json=payload)
+    response = await test_client.post('/v2/resource/lock/', json=payload)
     assert response.status_code == 200
 
-    response = await test_client_resource.post('/v2/resource/lock/', json=payload)
+    response = await test_client.post('/v2/resource/lock/', json=payload)
     assert response.status_code == 409

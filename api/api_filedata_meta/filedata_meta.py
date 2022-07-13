@@ -61,7 +61,8 @@ class FiledataMeta:
             'owner': data.uploader,
             'container_code': data.project_code,
             'container_type': 'project',
-            'location_uri': 'minio://%s/%s/%s' % (ConfigClass.MINIO_SERVICE, data.bucket, data.minio_object_path),
+            'location_uri': 'minio://%s/%s/%s'
+            % (f'{ConfigClass.MINIO_HOST}:{ConfigClass.MINIO_PORT}', data.bucket, data.minio_object_path),
             'version': data.version_id,
             'tags': data.labels,
         }

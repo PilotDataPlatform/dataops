@@ -11,6 +11,7 @@
 # see http://www.gnu.org/licenses/.
 
 from fastapi import APIRouter
+from fastapi_health import health
 
 from api.api_archive import archive
 from api.api_file_operations import api_file_operations
@@ -18,8 +19,16 @@ from api.api_file_operations import api_message_hub
 from api.api_filedata_meta import filedata_meta
 from api.api_resource_lock import api_file_lock
 from api.api_task_dispatch import task_dispatch
+from resources.health_check import rds_check
+from resources.health_check import redis_check
 
 api_router = APIRouter()
+api_router.add_api_route(
+    '/health',
+    health([rds_check, redis_check], success_status=204),
+    tags=['Health'],
+    summary='Health check RDS and Redis',
+)
 api_router.include_router(filedata_meta.router, prefix='/filedata', tags=['filedata'])
 api_router.include_router(task_dispatch.router, prefix='/tasks', tags=['task-management'])
 api_router.include_router(api_file_operations.router, prefix='/files/actions', tags=['file-operations'])

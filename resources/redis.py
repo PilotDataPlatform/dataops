@@ -34,6 +34,9 @@ class SrvAioRedisSingleton:
         else:
             self.__instance = StrictRedis(host=self.host, port=self.port, db=self.db, password=self.pwd)
 
+    async def ping(self):
+        return await self.__instance.ping()
+
     async def get_by_key(self, key: str):
         return await self.__instance.get(key)
 
