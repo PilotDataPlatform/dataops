@@ -20,26 +20,6 @@ pipeline {
         }
     }
 
-    stage('DEV: Run unit tests') {
-        when { branch 'develop' }
-        steps {
-            withCredentials([
-                usernamePassword(credentialsId: 'readonly', usernameVariable: 'PIP_USERNAME', passwordVariable: 'PIP_PASSWORD'),
-                string(credentialsId:'VAULT_TOKEN', variable: 'VAULT_TOKEN'),
-                string(credentialsId:'VAULT_URL', variable: 'VAULT_URL'),
-                file(credentialsId:'VAULT_CRT', variable: 'VAULT_CRT')
-            ]) {
-                sh """
-                pip install --user poetry==1.1.12
-                ${HOME}/.local/bin/poetry config virtualenvs.in-project true
-                ${HOME}/.local/bin/poetry config http-basic.pilot ${PIP_USERNAME} ${PIP_PASSWORD}
-                ${HOME}/.local/bin/poetry install --no-root --no-interaction
-                ${HOME}/.local/bin/poetry run pytest --verbose -c tests/pytest.ini
-                """
-            }
-        }
-    }
-
     stage('DEV Build and push image') {
       when {branch "develop"}
       steps{
