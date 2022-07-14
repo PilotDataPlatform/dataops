@@ -10,26 +10,33 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.
 # If not, see http://www.gnu.org/licenses/.
 
+from fastapi import Depends
+from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.orm import sessionmaker
 
 from config import ConfigClass
 
 
 class CreateEngine:
-    @staticmethod
-    def get_connections():
-        engine = create_async_engine(ConfigClass.RDS_DB_URI)
-        SessionLocal = sessionmaker(class_=AsyncSession, autocommit=False, autoflush=False, bind=engine)
-        return SessionLocal
+    def __init__(self) -> None:
+        self.instance = None
+
+    async def __call__(self) -> AsyncEngine:
+        """Return an instance of AsyncEngine class."""
+
+        if not self.instance:
+            self.instance = create_async_engine(ConfigClass.RDS_DB_URI, echo=ConfigClass.RDS_ECHO_SQL_QUERIES)
+        return self.instance
 
 
-get_session = CreateEngine().get_connections()
+get_db_engine = CreateEngine()
 
 
-class DatabaseConnection:
-    @staticmethod
-    async def get_db_session() -> AsyncSession:
-        async with get_session() as session:
-            yield session
+async def get_db_session(engine: AsyncEngine = Depends(get_db_engine)) -> AsyncSession:
+    """Create a FastAPI callable dependency for SQLAlchemy AsyncSession instance."""
+    session = AsyncSession(bind=engine, expire_on_commit=False)
+    try:
+        yield session
+    finally:
+        await session.close()

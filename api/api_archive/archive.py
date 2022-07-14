@@ -27,7 +27,7 @@ from models.api_archive import ArchivePOSTResponse
 from models.api_archive_sql import ArchivePreviewModel
 from models.base_models import APIResponse
 from models.base_models import EAPIResponseCode
-from resources.db_connection import DatabaseConnection
+from resources.db import get_db_session
 
 router = APIRouter()
 
@@ -35,12 +35,9 @@ router = APIRouter()
 @cbv(router)
 class ArchiveList:
     _logger = LoggerFactory('api_archive').get_logger()
-    database_connection = DatabaseConnection
 
     @router.get('/archive', response_model=ArchiveGETResponse, summary='Get a zip preview given file id')
-    async def get(
-        self, data: dict = Depends(ArchiveGETRequest), db: AsyncSession = Depends(database_connection.get_db_session)
-    ):
+    async def get(self, data: dict = Depends(ArchiveGETRequest), db: AsyncSession = Depends(get_db_session)):
         """Get a Zip preview."""
         file_id = data.file_id
 
@@ -58,7 +55,7 @@ class ArchiveList:
         return api_response.json_response()
 
     @router.post('/archive', response_model=ArchivePOSTResponse, summary='Create a zip preview')
-    async def post(self, data: ArchivePOSTRequest, db: AsyncSession = Depends(database_connection.get_db_session)):
+    async def post(self, data: ArchivePOSTRequest, db: AsyncSession = Depends(get_db_session)):
         """Create a ZIP preview given a file_id and preview as a dict."""
         file_id = data.file_id
         archive_preview = json.dumps(data.archive_preview)
@@ -72,7 +69,6 @@ class ArchiveList:
                 api_response.code = EAPIResponseCode.conflict
                 api_response.result = 'Duplicate entry for preview'
                 return api_response.json_response()
-
             archive_model = ArchivePreviewModel(file_id=file_id, archive_preview=archive_preview)
             db.add(archive_model)
             await db.commit()
@@ -85,7 +81,7 @@ class ArchiveList:
         return api_response.json_response()
 
     @router.delete('/archive', summary='Delete a zip preview, only used for unit tests')
-    async def delete(self, data: ArchiveDELETERequest, db: AsyncSession = Depends(database_connection.get_db_session)):
+    async def delete(self, data: ArchiveDELETERequest, db: AsyncSession = Depends(get_db_session)):
         """Delete preview given a file_id."""
         file_id = data.file_id
         self._logger.info('DELETE zip preview for: ' + str(file_id))

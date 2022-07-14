@@ -12,43 +12,86 @@
 
 import asyncio
 import os
+from contextlib import contextmanager
+from pathlib import Path
 
-import httpx
 import pytest
 import pytest_asyncio
+from alembic.command import downgrade
+from alembic.command import upgrade
+from alembic.config import Config
 from async_asgi_testclient import TestClient
 from faker import Faker
 from fakeredis.aioredis import FakeRedis
-from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.schema import CreateTable
 from testcontainers.postgres import PostgresContainer
 
+from dependencies.cache import Cache
+from dependencies.cache import CacheInstance
 from models.api_archive_sql import ArchivePreviewModel
-from models.api_archive_sql import Base as ArchiveBase
+from resources.db import get_db_session
 
-RDS_SCHEMA_DEFAULT = os.environ['RDS_SCHEMA_DEFAULT']
+
+@contextmanager
+def chdir(directory: Path) -> None:
+    cwd = os.getcwd()
+    try:
+        os.chdir(directory)
+        yield
+    finally:
+        os.chdir(cwd)
 
 
 @pytest.fixture(scope='session')
-def db_postgres():
+def project_root() -> Path:
+    path = Path(__file__)
+
+    while path.name != 'dataops':
+        path = path.parent
+
+    yield path
+
+
+@pytest.fixture(scope='session')
+def db_uri(project_root) -> str:
     with PostgresContainer('postgres:9.5') as postgres:
-        yield postgres.get_connection_url().replace('+psycopg2', '+asyncpg')
+        database_uri = postgres.get_connection_url().replace('+psycopg2', '+asyncpg')
+        config = Config('migrations/alembic.ini')
+        with chdir(project_root):
+            config.set_main_option('database_uri', database_uri)
+            upgrade(config, 'head')
+            yield database_uri
+            downgrade(config, 'base')
 
 
 @pytest_asyncio.fixture
-async def engine(db_postgres):
-    engine = create_async_engine(db_postgres)
+async def db_engine(db_uri):
+    engine = create_async_engine(db_uri)
     yield engine
     await engine.dispose()
 
 
-class AsyncClient(httpx.AsyncClient):
-    async def delete(self, url: str, **kwds) -> httpx.Response:
-        """Default delete request doesn't support body."""
+@pytest.fixture
+async def db_session(db_engine) -> AsyncSession:
+    session = AsyncSession(bind=db_engine, expire_on_commit=False)
+    try:
+        yield session
+    finally:
+        await session.close()
 
-        return await self.request('DELETE', url, **kwds)
+
+@pytest_asyncio.fixture
+async def setup_archive_table(db_session):
+    archive_row = ArchivePreviewModel(
+        file_id='689665f9-eb57-4029-9fb4-526ce743d1c9',
+        archive_preview='{"script.py": {"filename": "script.py", "size": 2550, '
+        '"is_dir": false}, "dir2": {"is_dir": true, "script2.py": '
+        '{"filename": "script2.py", "size": 1219, "is_dir": false}}}',
+    )
+    db_session.add(archive_row)
+    await db_session.commit()
+    yield
 
 
 @pytest.fixture(scope='session')
@@ -58,36 +101,6 @@ def event_loop(request):
     yield loop
     loop.close()
     asyncio.set_event_loop_policy(None)
-
-
-@pytest_asyncio.fixture
-async def test_client():
-    from app import create_app
-
-    app = create_app()
-    async with TestClient(app) as client:
-        yield client
-
-
-@pytest_asyncio.fixture
-async def create_db_archive(engine):
-    async with engine.begin() as conn:
-        await conn.execute(text(f'CREATE SCHEMA IF NOT EXISTS {RDS_SCHEMA_DEFAULT};'))
-        await conn.execute(CreateTable(ArchivePreviewModel.__table__))
-        await conn.run_sync(ArchiveBase.metadata.create_all)
-    async with AsyncSession(engine) as session:
-        session.add(
-            ArchivePreviewModel(
-                file_id='689665f9-eb57-4029-9fb4-526ce743d1c9',
-                archive_preview='{"script.py": {"filename": "script.py", "size": 2550, '
-                '"is_dir": false}, "dir2": {"is_dir": true, "script2.py": '
-                '{"filename": "script2.py", "size": 1219, "is_dir": false}}}',
-            )
-        )
-        await session.commit()
-    yield
-    async with engine.begin() as conn:
-        await conn.run_sync(ArchiveBase.metadata.drop_all)
 
 
 @pytest.fixture
@@ -108,17 +121,15 @@ def cache(redis):
     yield Cache(redis)
 
 
-@pytest.fixture
-async def test_client_resource(redis) -> AsyncClient:
-    from dependencies.cache import Cache
-    from dependencies.cache import CacheInstance
-
+@pytest_asyncio.fixture
+async def test_client(db_session, redis):
     async def replace_cache():
         return Cache(redis)
 
     from app import create_app
 
     app = create_app()
+    app.dependency_overrides[get_db_session] = lambda: db_session
     app.dependency_overrides[CacheInstance.get_cache] = replace_cache
-    async with AsyncClient(app=app, base_url='https://') as client:
+    async with TestClient(app) as client:
         yield client

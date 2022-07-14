@@ -19,8 +19,9 @@ from fastapi.responses import JSONResponse
 from opentelemetry import trace
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
-from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
 from opentelemetry.sdk.resources import SERVICE_NAME
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
@@ -31,6 +32,7 @@ from api.routes import api_router_v2
 from config import Settings
 from config import get_settings
 from dependencies import get_redis
+from resources.db import get_db_engine
 
 
 def create_app() -> FastAPI:
@@ -46,11 +48,6 @@ def create_app() -> FastAPI:
     )
 
     setup_routers(app)
-    setup_middlewares(app, settings)
-    setup_dependencies(app, settings)
-    setup_exception_handlers(app)
-    setup_tracing(app, settings)
-
     return app
 
 
@@ -61,7 +58,7 @@ def setup_routers(app: FastAPI) -> None:
     app.include_router(api_router_v2, prefix='/v2')
 
 
-def setup_middlewares(app: FastAPI, settings: Settings) -> None:
+def setup_middlewares(app: FastAPI) -> None:
     """Configure the application middlewares."""
 
     app.add_middleware(
@@ -97,21 +94,39 @@ def global_exception_handler(request: Request, exception: Exception) -> JSONResp
     return JSONResponse(status_code=500, content={'error_msg': 'Internal Server Error'})
 
 
-def setup_tracing(app: FastAPI, settings: Settings) -> None:
+async def _initialize_instrument_app(app: FastAPI, settings: Settings) -> None:
     """Instrument the application with OpenTelemetry tracing."""
-
-    if not settings.OPEN_TELEMETRY_ENABLED:
-        return
 
     tracer_provider = TracerProvider(resource=Resource.create({SERVICE_NAME: settings.APP_NAME}))
     trace.set_tracer_provider(tracer_provider)
 
     FastAPIInstrumentor.instrument_app(app)
-    RequestsInstrumentor().instrument()
+    HTTPXClientInstrumentor().instrument()
     LoggingInstrumentor().instrument()
+
+    db = await get_db_engine()
+    SQLAlchemyInstrumentor().instrument(engine=db.sync_engine, service=settings.APP_NAME)
 
     jaeger_exporter = JaegerExporter(
         agent_host_name=settings.OPEN_TELEMETRY_HOST, agent_port=settings.OPEN_TELEMETRY_PORT
     )
 
     tracer_provider.add_span_processor(BatchSpanProcessor(jaeger_exporter))
+
+
+async def on_startup_event(app: FastAPI, settings: Settings) -> None:
+    setup_middlewares(app)
+    setup_dependencies(app, settings)
+    setup_exception_handlers(app)
+
+    if settings.OPEN_TELEMETRY_ENABLED:
+        await _initialize_instrument_app(app, settings)
+
+
+app = create_app()
+settings = get_settings()
+
+
+@app.on_event('startup')
+async def startup() -> None:
+    await on_startup_event(app, settings)

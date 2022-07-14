@@ -71,6 +71,7 @@ class Settings(BaseSettings):
 
     RDS_DB_URI: str
     RDS_SCHEMA_DEFAULT: str
+    RDS_ECHO_SQL_QUERIES: bool = False
 
     MINIO_ENDPOINT: str
     MINIO_ACCESS_KEY: str
