@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'small' }
     environment {
-      imagename_dev = "ghcr.io/pilotdataplatform/dataops"
+      imagename = "ghcr.io/pilotdataplatform/dataops"  
       imagename_staging = "ghcr.io/pilotdataplatform/dataops"
       commit = sh(returnStdout: true, script: 'git describe --always').trim()
       registryCredential = 'pilot-ghcr'
@@ -45,7 +45,11 @@ pipeline {
       steps{
         script {
                 docker.withRegistry('https://ghcr.io', registryCredential) {
-                    customImage = docker.build("$imagename_dev:${env.commit}", ".")
+                    customImage = docker.build('$imagename:alembic-$commit', '--target alembic-image .')
+                    customImage.push()
+                }
+                docker.withRegistry('https://ghcr.io', registryCredential) {
+                    customImage = docker.build('$imagename:dataops-$commit', '--target dataops-image .')
                     customImage.push()
                 }
         }
@@ -54,7 +58,8 @@ pipeline {
     stage('DEV Remove image') {
       when {branch "develop"}
       steps{
-        sh "docker rmi $imagename_dev:$commit"
+        sh 'docker rmi $imagename:alembic-$commit'
+        sh 'docker rmi $imagename:dataops-$commit'
       }
     }
 
