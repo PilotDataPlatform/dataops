@@ -19,7 +19,7 @@ pipeline {
           }
         }
     }
-/* it will be handled by github actions
+/** it will be handled by github actions
     stage('DEV: Run unit tests') {
         when { branch 'develop' }
         steps {
@@ -39,7 +39,7 @@ pipeline {
             }
         }
     }
-/*
+**/
     stage('DEV Build and push image') {
       when {branch "develop"}
       steps{
