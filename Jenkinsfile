@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'small' }
     environment {
-      imagename_dev = "ghcr.io/pilotdataplatform/dataops"
+      imagename = "ghcr.io/pilotdataplatform/dataops"
       imagename_staging = "ghcr.io/pilotdataplatform/dataops"
       commit = sh(returnStdout: true, script: 'git describe --always').trim()
       registryCredential = 'pilot-ghcr'
@@ -19,7 +19,7 @@ pipeline {
           }
         }
     }
-
+/** it will be handled by github actions
     stage('DEV: Run unit tests') {
         when { branch 'develop' }
         steps {
@@ -39,13 +39,17 @@ pipeline {
             }
         }
     }
-
+**/
     stage('DEV Build and push image') {
       when {branch "develop"}
       steps{
         script {
-                docker.withRegistry('https://ghcr.io', registryCredential) {
-                    customImage = docker.build("$imagename_dev:${env.commit}", ".")
+              docker.withRegistry('https://ghcr.io', registryCredential) {
+                customImage = docker.build('$imagename:alembic-$commit', '--target alembic-image .')
+                customImage.push()
+                }
+              docker.withRegistry('https://ghcr.io', registryCredential) {
+                customImage = docker.build('$imagename:dataops-$commit', '--target dataops-image .')
                     customImage.push()
                 }
         }
@@ -54,7 +58,8 @@ pipeline {
     stage('DEV Remove image') {
       when {branch "develop"}
       steps{
-        sh "docker rmi $imagename_dev:$commit"
+        sh 'docker rmi $imagename:alembic-$commit'
+        sh 'docker rmi $imagename:dataops-$commit'
       }
     }
 
@@ -64,7 +69,7 @@ pipeline {
       build(job: "/VRE-IaC/UpdateAppVersion", parameters: [
         [$class: 'StringParameterValue', name: 'TF_TARGET_ENV', value: 'dev' ],
         [$class: 'StringParameterValue', name: 'TARGET_RELEASE', value: 'dataops-utility' ],
-        [$class: 'StringParameterValue', name: 'NEW_APP_VERSION', value: "$commit" ]
+        [$class: 'StringParameterValue', name: 'NEW_APP_VERSION', value: "dataops-$commit" ]
     ])
       }
     }

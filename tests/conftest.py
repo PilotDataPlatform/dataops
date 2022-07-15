@@ -11,9 +11,15 @@
 # If not, see http://www.gnu.org/licenses/.
 
 import asyncio
+import os
+from contextlib import contextmanager
+from pathlib import Path
 
 import pytest
 import pytest_asyncio
+from alembic.command import downgrade
+from alembic.command import upgrade
+from alembic.config import Config
 from async_asgi_testclient import TestClient
 from faker import Faker
 from fakeredis.aioredis import FakeRedis
@@ -24,21 +30,44 @@ from testcontainers.postgres import PostgresContainer
 from dependencies.cache import Cache
 from dependencies.cache import CacheInstance
 from models.api_archive_sql import ArchivePreviewModel
-from models.api_archive_sql import Base
 from resources.db import get_db_session
 
 
+@contextmanager
+def chdir(directory: Path) -> None:
+    cwd = os.getcwd()
+    try:
+        os.chdir(directory)
+        yield
+    finally:
+        os.chdir(cwd)
+
+
 @pytest.fixture(scope='session')
-def db_uri():
+def project_root() -> Path:
+    path = Path(__file__)
+
+    while path.name != 'dataops':
+        path = path.parent
+
+    yield path
+
+
+@pytest.fixture(scope='session')
+def db_uri(project_root) -> str:
     with PostgresContainer('postgres:9.5') as postgres:
-        yield postgres.get_connection_url().replace('+psycopg2', '+asyncpg')
+        database_uri = postgres.get_connection_url().replace('+psycopg2', '+asyncpg')
+        config = Config('migrations/alembic.ini')
+        with chdir(project_root):
+            config.set_main_option('database_uri', database_uri)
+            upgrade(config, 'head')
+            yield database_uri
+            downgrade(config, 'base')
 
 
-@pytest.fixture(scope='session')
+@pytest_asyncio.fixture(scope='session')
 async def db_engine(db_uri):
     engine = create_async_engine(db_uri)
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
     yield engine
     await engine.dispose()
 
