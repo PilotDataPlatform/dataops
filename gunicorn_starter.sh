@@ -8,4 +8,4 @@
 # You should have received a copy of the GNU Affero General Public License along with this program. If not, see http://www.gnu.org/licenses/.
 
 
-gunicorn -c gunicorn_config.py "app:create_app" -k uvicorn.workers.UvicornWorker --timeout 3000
+gunicorn -c gunicorn_config.py "app:app" -k uvicorn.workers.UvicornWorker --timeout 3000
