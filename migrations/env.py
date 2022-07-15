@@ -32,8 +32,13 @@ fileConfig(config.config_file_name)
 settings = get_settings()
 
 target_metadata = Base.metadata
-database_schema = config.get_main_option('database_schema', 'public')
-database_uri = config.get_main_option('database_uri', settings.RDS_DB_URI)
+database_schema = config.get_main_option('database_schema', settings.RDS_SCHEMA)
+database_uri = config.get_main_option(
+    'database_uri',
+    f'postgresql://{settings.RDS_USERNAME}:'
+    f'{settings.RDS_PASSWORD}@{settings.RDS_HOST}:'
+    f'{settings.RDS_PORT}/{settings.RDS_NAME}',
+)
 
 
 def include_name(name: Optional[str], type_: str, parent_names: dict[str, Optional[str]]) -> bool:

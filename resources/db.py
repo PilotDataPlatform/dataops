@@ -30,7 +30,7 @@ class CreateEngine:
                 f'{ConfigClass.RDS_PORT}/{ConfigClass.RDS_NAME}',
                 echo=ConfigClass.RDS_ECHO_SQL_QUERIES,
             )
-            
+
         return self.instance
 
 
