@@ -78,7 +78,7 @@ class CopyDispatcher(BaseDispatcher):
             }
             _logger.info('Sending Message To Queue: ' + str(payload))
             async with httpx.AsyncClient() as client:
-                response = await client.post(url=ConfigClass.SEND_MESSAGE_URL, json=payload)
+                response = await client.post(url=f'{ConfigClass.QUEUE_SERVICE}send_message', json=payload)
             _logger.info(f'Message To Queue has been sent: {response.text}')
             await session_job.save()
         except Exception as e:

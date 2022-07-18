@@ -24,9 +24,13 @@ class CreateEngine:
 
     async def __call__(self) -> AsyncEngine:
         """Return an instance of AsyncEngine class."""
-
         if not self.instance:
-            self.instance = create_async_engine(ConfigClass.RDS_DB_URI, echo=ConfigClass.RDS_ECHO_SQL_QUERIES)
+            self.instance = create_async_engine(
+                f'postgresql+asyncpg://{ConfigClass.RDS_USERNAME}:{ConfigClass.RDS_PASSWORD}@{ConfigClass.RDS_HOST}:'
+                f'{ConfigClass.RDS_PORT}/{ConfigClass.RDS_NAME}',
+                echo=ConfigClass.RDS_ECHO_SQL_QUERIES,
+            )
+
         return self.instance
 
 

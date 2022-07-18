@@ -81,7 +81,7 @@ async def test_v1_create_copy_file_operation_job_return_202(
     # send message to queue
     httpx_mock.add_response(
         method='POST',
-        url='http://send_message_url/v1/send_message',
+        url='http://queue_service/v1/send_message',
         status_code=200,
         json={},
     )
@@ -299,7 +299,7 @@ async def test_v1_create_delete_file_operation_job_return_202(
     # send message to queue
     httpx_mock.add_response(
         method='POST',
-        url='http://send_message_url/v1/send_message',
+        url='http://queue_service/v1/send_message',
         status_code=200,
         json={},
     )

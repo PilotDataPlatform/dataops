@@ -17,7 +17,7 @@ from models import filemeta_models as models
 
 
 class CataLoguingManager:
-    base_url = ConfigClass.CATALOGUING_SERVICE_V2
+    base_url = ConfigClass.CATALOGUING_SERVICE
 
     async def create_file_meta(self, post_form: models.FiledataMetaPOST, geid):
         filedata_endpoint = 'filedata'

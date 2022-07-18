@@ -65,7 +65,7 @@ def db_uri(project_root) -> str:
             downgrade(config, 'base')
 
 
-@pytest_asyncio.fixture
+@pytest_asyncio.fixture(scope='session')
 async def db_engine(db_uri):
     engine = create_async_engine(db_uri)
     yield engine

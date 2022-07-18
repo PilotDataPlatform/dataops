@@ -23,7 +23,7 @@ from pydantic import Extra
 class VaultConfig(BaseSettings):
     """Store vault related configuration."""
 
-    APP_NAME: str = 'service_dataops_utility'
+    APP_NAME: str = 'dataops'
     CONFIG_CENTER_ENABLED: bool = False
 
     VAULT_URL: Optional[str]
@@ -48,7 +48,7 @@ def load_vault_settings(settings: BaseSettings) -> Dict[str, Any]:
 class Settings(BaseSettings):
     """Store service configuration settings."""
 
-    APP_NAME: str = 'service_dataops_utility'
+    APP_NAME: str = 'dataops_service'
     VERSION = '0.3.0'
     PORT: int = 5063
     HOST: str = '127.0.0.1'
@@ -58,10 +58,8 @@ class Settings(BaseSettings):
     GREEN_ZONE_LABEL: str = 'Greenroom'
     CORE_ZONE_LABEL: str = 'Core'
 
-    AUTH_SERVICE: str
     CATALOGUING_SERVICE: str
     QUEUE_SERVICE: str
-    SEND_MESSAGE_URL: str
     METADATA_SERVICE: str
 
     REDIS_HOST: str
@@ -69,14 +67,17 @@ class Settings(BaseSettings):
     REDIS_DB: int
     REDIS_PASSWORD: str
 
-    RDS_DB_URI: str
-    RDS_SCHEMA_DEFAULT: str
+    RDS_HOST: str
+    RDS_PORT: str
+    RDS_USERNAME: str
+    RDS_PASSWORD: str
+    RDS_NAME: str
+    RDS_SCHEMA: str
+    RDS_TABLE_NAME: str = 'archive_preview'
     RDS_ECHO_SQL_QUERIES: bool = False
 
-    MINIO_ENDPOINT: str
-    MINIO_ACCESS_KEY: str
-    MINIO_SECRET_KEY: str
-    MINIO_HTTPS: bool = False
+    MINIO_HOST: str
+    MINIO_PORT: str
 
     OPEN_TELEMETRY_ENABLED: bool = False
     OPEN_TELEMETRY_HOST: str = '127.0.0.1'
@@ -84,13 +85,8 @@ class Settings(BaseSettings):
 
     def __init__(self):
         super().__init__()
-
-        self.AUTH_SERVICE = self.AUTH_SERVICE + '/v1/'
-        self.CATALOGUING_SERVICE_V2 = self.CATALOGUING_SERVICE + '/v2/'
+        self.CATALOGUING_SERVICE = self.CATALOGUING_SERVICE + '/v2/'
         self.QUEUE_SERVICE = self.QUEUE_SERVICE + '/v1/'
-        self.SEND_MESSAGE_URL = self.SEND_MESSAGE_URL + '/v1/send_message'
-        self.MINIO_SERVICE = 'http://' + self.MINIO_ENDPOINT
-        self.RDS_DB_URI = self.RDS_DB_URI.replace('postgresql', 'postgresql+asyncpg')
         self.METADATA_SERVICE = self.METADATA_SERVICE + '/v1/'
 
     class Config:

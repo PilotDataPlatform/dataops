@@ -22,8 +22,8 @@ Base = declarative_base()
 
 
 class ArchivePreviewModel(Base):
-    __tablename__ = 'archive_preview'
-    __table_args__ = {'schema': ConfigClass.RDS_SCHEMA_DEFAULT}
+    __tablename__ = ConfigClass.RDS_TABLE_NAME
+    __table_args__ = {'schema': ConfigClass.RDS_SCHEMA}
     id = Column(BigInteger, primary_key=True)
     file_id = Column(UUID(as_uuid=True))
     archive_preview = Column(VARCHAR())
