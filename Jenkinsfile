@@ -69,7 +69,7 @@ pipeline {
       build(job: "/VRE-IaC/UpdateAppVersion", parameters: [
         [$class: 'StringParameterValue', name: 'TF_TARGET_ENV', value: 'dev' ],
         [$class: 'StringParameterValue', name: 'TARGET_RELEASE', value: 'dataops-utility' ],
-        [$class: 'StringParameterValue', name: 'NEW_APP_VERSION', value: "dataops-$commit" ]
+        [$class: 'StringParameterValue', name: 'NEW_APP_VERSION', value: "$commit" ]
     ])
       }
     }
