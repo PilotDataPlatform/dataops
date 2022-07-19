@@ -47,6 +47,7 @@ alembic = "^1.8.0"
 opentelemetry-instrumentation-httpx = "^0.30b1"
 opentelemetry-instrumentation-sqlalchemy = "^0.30b1"
 uvicorn = "0.12.3"
+uvloop = "^0.16.0"
 
 
 [tool.poetry.dev-dependencies]
