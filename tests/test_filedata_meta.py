@@ -21,7 +21,7 @@ async def test_v1_create_filedata_return_200(test_client, httpx_mock):
     # create atlas entry
     httpx_mock.add_response(
         method='POST',
-        url='http://cataloguing_service/v2/filedata',
+        url='http://LINEAGE_SERVICE/v2/filedata',
         status_code=200,
         json={'result': {'mutatedEntities': {'CREATE': [{'guid': '123atlas'}]}}},
     )
@@ -55,7 +55,7 @@ async def test_v1_create_filedata_failed_to_create_entity_return_500(test_client
     # create atlas entry
     httpx_mock.add_response(
         method='POST',
-        url='http://cataloguing_service/v2/filedata',
+        url='http://LINEAGE_SERVICE/v2/filedata',
         status_code=200,
         json={'result': {'mutatedEntities': {'CREATE': [{'guid': '123atlas'}]}}},
     )
@@ -92,7 +92,7 @@ async def test_v1_create_filedata_failed_to_update_apache_atlas_return_500(test_
     # create atlas entry
     httpx_mock.add_response(
         method='POST',
-        url='http://cataloguing_service/v2/filedata',
+        url='http://LINEAGE_SERVICE/v2/filedata',
         status_code=500,
         json={},
     )

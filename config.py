@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     GREEN_ZONE_LABEL: str = 'Greenroom'
     CORE_ZONE_LABEL: str = 'Core'
 
-    CATALOGUING_SERVICE: str
+    LINEAGE_SERVICE: str
     QUEUE_SERVICE: str
     METADATA_SERVICE: str
 
@@ -85,7 +85,7 @@ class Settings(BaseSettings):
 
     def __init__(self):
         super().__init__()
-        self.CATALOGUING_SERVICE = self.CATALOGUING_SERVICE + '/v2/'
+        self.LINEAGE_SERVICE = self.LINEAGE_SERVICE + '/v2/'
         self.QUEUE_SERVICE = self.QUEUE_SERVICE + '/v1/'
         self.METADATA_SERVICE = self.METADATA_SERVICE + '/v1/'
 
