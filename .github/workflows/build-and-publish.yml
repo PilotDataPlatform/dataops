@@ -50,8 +50,8 @@ jobs:
           # Sets the target stage to build
           target: dataops-image
   build-and-push-alembic-docker-image:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: Build Docker image and push to repositories
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Build alembic docker image and push to repositories
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -89,7 +89,7 @@ jobs:
           target: alembic-image
   Trigger-jenkins:
     needs: [build-and-push-docker-image, build-and-push-alembic-docker-image]
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Trigger jenkins job
     runs-on: ubuntu-latest
     steps:
