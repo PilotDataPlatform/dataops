@@ -45,11 +45,11 @@ pipeline {
       steps{
         script {
               docker.withRegistry('https://ghcr.io', registryCredential) {
-                customImage = docker.build('$imagename:alembic-$commit', '--target alembic-image .')
+                customImage = docker.build('$imagename:alembic-$commit-CAC', '--target alembic-image .')
                 customImage.push()
                 }
               docker.withRegistry('https://ghcr.io', registryCredential) {
-                customImage = docker.build('$imagename:dataops-$commit', '--target dataops-image .')
+                customImage = docker.build('$imagename:dataops-$commit-CAC', '--target dataops-image .')
                     customImage.push()
                 }
         }
@@ -58,8 +58,8 @@ pipeline {
     stage('DEV Remove image') {
       when {branch "develop"}
       steps{
-        sh 'docker rmi $imagename:alembic-$commit'
-        sh 'docker rmi $imagename:dataops-$commit'
+        sh 'docker rmi $imagename:alembic-$commit-CAC'
+        sh 'docker rmi $imagename:dataops-$commit-CAC'
       }
     }
 
