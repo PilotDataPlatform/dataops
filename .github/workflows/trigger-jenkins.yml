@@ -18,7 +18,7 @@ jobs:
         # run:  full_commit_SHA="${{ github.sha }}" && short_commit_SHA=$(echo "${full_commit_SHA:0:7}") && echo "SHA=$short_commit_SHA" >> $GITHUB_ENV
       - name: trigger the jenkins pipeline with curl
         run: |
-          target_release=auth
+          target_release=dataops
           env=dev
           curl --silent -i -X POST -m 60 -L -o output.txt --user jenkins:${{ secrets.JENKINS_API_TOKEN }} https://ci.dev.pilot.indocresearch.org/job/Infra/job/UpdateAppVersion/buildWithParameters --data TF_TARGET_ENV=$env --data TARGET_RELEASE=$target_release --data NEW_APP_VERSION="${{ env.SHA }}"
           location=$(cat output.txt | grep location | cut -d " " -f2 | sed 's/\r//')
