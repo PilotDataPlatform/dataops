@@ -28,9 +28,9 @@ This project is using [Poetry](https://python-poetry.org/docs/#installation) to 
 
        poetry install
 
-3. Run setup script for creating PostgreSQL database (schema created during Alembic migration).
+3. Run setup script for creating PostgreSQL database (schema is created during Alembic migration).
 
-       - [Create Database](https://github.com/PilotDataPlatform/dataops/blob/develop/migrations/scripts/create_db.sql)
+    - [Create database](https://github.com/PilotDataPlatform/dataops/blob/develop/migrations/scripts/create_db.sql)
 
 5. Add environment variables into `.env` in case it's needed. Use `.env.schema` as a reference.
 
